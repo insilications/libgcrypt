@@ -1,0 +1,9 @@
+--enable-shared
+--enable-static
+--enable-ciphers="cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des"
+--disable-large-data-tests
+--disable-O-flag-munging
+--disable-instrumentation-munging
+--disable-m-guard
+--disable-doc
+--enable-maintainer-mode

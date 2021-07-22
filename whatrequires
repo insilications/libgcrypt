@@ -1,2 +1,11 @@
 # This file contains recursive sources that require this package
+evolution-data-server-dev
+evolution-dev
+folks-dev
+gtk-vnc-dev
+libgcrypt-dev
+libgcrypt-dev32
+libsecret-dev
 rsyslog
+subversion-dev
+xmlsec1-dev
