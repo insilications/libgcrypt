@@ -5,6 +5,7 @@ folks-dev
 gtk-vnc-dev
 libgcrypt-dev
 libgcrypt-dev32
+libgcrypt-staticdev
 libsecret-dev
 rsyslog
 subversion-dev
