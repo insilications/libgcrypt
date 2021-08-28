@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libgcrypt
 Version  : 1.9.4
-Release  : 47
+Release  : 301
 URL      : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Summary  : General purpose cryptographic library
@@ -118,7 +118,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1630152730
+export SOURCE_DATE_EPOCH=1630152959
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -313,7 +313,7 @@ make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1630152730
+export SOURCE_DATE_EPOCH=1630152959
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
