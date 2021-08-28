@@ -36,7 +36,7 @@ index 9a9ed6d3..ed5390ac 100644
 --- a/src/hwf-x86.c
 +++ b/src/hwf-x86.c
 @@ -41,7 +41,7 @@
- 
+
  #if _GCRY_GCC_VERSION >= 40700 /* 4.7 */
  # define FORCE_FUNC_FRAME_POINTER \
 -	__attribute__ ((optimize("no-omit-frame-pointer")))

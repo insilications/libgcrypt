@@ -6,4 +6,3 @@
 --disable-instrumentation-munging
 --disable-m-guard
 --disable-doc
---enable-maintainer-mode
