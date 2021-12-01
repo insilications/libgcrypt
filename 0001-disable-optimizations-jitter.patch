@@ -1,0 +1,25 @@
+From 00f341dee0cbbf8633bf4de4915ac50e6fcf8504 Mon Sep 17 00:00:00 2001
+From: Francisco Boni <boboniboni@gmail.com>
+Date: Wed, 1 Dec 2021 00:08:31 -0300
+Subject: [PATCH] disable-optimizations-jitter
+
+---
+ random/jitterentropy-base.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/random/jitterentropy-base.c b/random/jitterentropy-base.c
+index cf7630d9..fbc3650d 100644
+--- a/random/jitterentropy-base.c
++++ b/random/jitterentropy-base.c
+@@ -29,6 +29,8 @@
+  * DAMAGE.
+  */
+ 
++#pragma GCC optimize ("O0")
++#pragma clang optimize off
+ #include "jitterentropy.h"
+ 
+ #include "jitterentropy-base.h"
+-- 
+2.34.0
+

@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libgcrypt
 Version  : 1.9.4
-Release  : 405
+Release  : 408
 URL      : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Summary  : General purpose cryptographic library
@@ -39,6 +39,8 @@ BuildRequires : texinfo
 %define __strip /bin/true
 %define debug_package %{nil}
 Patch1: 0001-Specify-O3-for-func-attribute-override.patch
+Patch2: 0001-disable-optimizations-jitter.patch
+Patch3: libgcrypt-1.8.5-getrandom.patch
 
 %description
 Libgcrypt - The GNU Crypto Library
@@ -49,6 +51,8 @@ Version 1.9
 %setup -q -n libgcrypt
 cd %{_builddir}/libgcrypt
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 pushd %{_builddir}
 cp -a %{_builddir}/libgcrypt build32
 popd
@@ -59,7 +63,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1638327557
+export SOURCE_DATE_EPOCH=1638328308
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -160,8 +164,7 @@ export LIBS="${LIBS_GENERATE}"
 --disable-instrumentation-munging \
 --disable-m-guard \
 --disable-doc \
---enable-noexecstack \
---enable-hmac-binary-check
+--enable-noexecstack
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 
 ## profile_payload start
@@ -213,8 +216,7 @@ export LIBS="${LIBS_USE}"
 --disable-instrumentation-munging \
 --disable-m-guard \
 --disable-doc \
---enable-noexecstack \
---enable-hmac-binary-check
+--enable-noexecstack
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 fi
 
@@ -248,13 +250,12 @@ export LDFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -pipe -fPIC -march=nat
 --disable-m-guard \
 --disable-doc \
 --enable-noexecstack \
---enable-hmac-binary-check \
 --enable-maintainer-mode --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1638327557
+export SOURCE_DATE_EPOCH=1638328308
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32

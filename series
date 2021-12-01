@@ -1,2 +1,3 @@
 0001-Specify-O3-for-func-attribute-override.patch
-disable-optimizations-jitter.patch
+0001-disable-optimizations-jitter.patch
+libgcrypt-1.8.5-getrandom.patch
