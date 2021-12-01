@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libgcrypt
 Version  : 1.9.4
-Release  : 404
+Release  : 405
 URL      : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Summary  : General purpose cryptographic library
@@ -59,7 +59,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1638327030
+export SOURCE_DATE_EPOCH=1638327557
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -159,7 +159,9 @@ export LIBS="${LIBS_GENERATE}"
 --disable-O-flag-munging \
 --disable-instrumentation-munging \
 --disable-m-guard \
---disable-doc
+--disable-doc \
+--enable-noexecstack \
+--enable-hmac-binary-check
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 
 ## profile_payload start
@@ -210,7 +212,9 @@ export LIBS="${LIBS_USE}"
 --disable-O-flag-munging \
 --disable-instrumentation-munging \
 --disable-m-guard \
---disable-doc
+--disable-doc \
+--enable-noexecstack \
+--enable-hmac-binary-check
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 fi
 
@@ -243,12 +247,14 @@ export LDFLAGS="-O2 -ffat-lto-objects -fuse-linker-plugin -pipe -fPIC -march=nat
 --disable-instrumentation-munging \
 --disable-m-guard \
 --disable-doc \
+--enable-noexecstack \
+--enable-hmac-binary-check \
 --enable-maintainer-mode --libdir=/usr/lib32 --build=i686-generic-linux-gnu --host=i686-generic-linux-gnu --target=i686-clr-linux-gnu
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1638327030
+export SOURCE_DATE_EPOCH=1638327557
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32

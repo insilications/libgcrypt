@@ -6,3 +6,5 @@
 --disable-instrumentation-munging
 --disable-m-guard
 --disable-doc
+--enable-noexecstack
+--enable-hmac-binary-check
