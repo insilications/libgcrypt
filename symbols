@@ -153,7 +153,10 @@ libgcrypt.so.20:gcry_pk_get_curve
 libgcrypt.so.20:gcry_pk_get_keygrip
 libgcrypt.so.20:gcry_pk_get_nbits
 libgcrypt.so.20:gcry_pk_get_param
+libgcrypt.so.20:gcry_pk_hash_sign
+libgcrypt.so.20:gcry_pk_hash_verify
 libgcrypt.so.20:gcry_pk_map_name
+libgcrypt.so.20:gcry_pk_random_override_new
 libgcrypt.so.20:gcry_pk_sign
 libgcrypt.so.20:gcry_pk_testkey
 libgcrypt.so.20:gcry_pk_verify

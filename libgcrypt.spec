@@ -5,12 +5,15 @@
 %define keepstatic 1
 Name     : libgcrypt
 Version  : 1.9.4
-Release  : 409
+Release  : 414
 URL      : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Summary  : General purpose cryptographic library
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.0+
+Requires: libgcrypt-bin = %{version}-%{release}
+Requires: libgcrypt-data = %{version}-%{release}
+Requires: libgcrypt-lib = %{version}-%{release}
 BuildRequires : ImageMagick
 BuildRequires : ImageMagick-dev
 BuildRequires : fig2dev
@@ -48,6 +51,75 @@ Libgcrypt - The GNU Crypto Library
 ------------------------------------
 Version 1.9
 
+%package bin
+Summary: bin components for the libgcrypt package.
+Group: Binaries
+Requires: libgcrypt-data = %{version}-%{release}
+
+%description bin
+bin components for the libgcrypt package.
+
+
+%package data
+Summary: data components for the libgcrypt package.
+Group: Data
+
+%description data
+data components for the libgcrypt package.
+
+
+%package dev
+Summary: dev components for the libgcrypt package.
+Group: Development
+Requires: libgcrypt-lib = %{version}-%{release}
+Requires: libgcrypt-bin = %{version}-%{release}
+Requires: libgcrypt-data = %{version}-%{release}
+Provides: libgcrypt-devel = %{version}-%{release}
+Requires: libgcrypt = %{version}-%{release}
+
+%description dev
+dev components for the libgcrypt package.
+
+
+%package dev32
+Summary: dev32 components for the libgcrypt package.
+Group: Default
+Requires: libgcrypt-lib32 = %{version}-%{release}
+Requires: libgcrypt-bin = %{version}-%{release}
+Requires: libgcrypt-data = %{version}-%{release}
+Requires: libgcrypt-dev = %{version}-%{release}
+
+%description dev32
+dev32 components for the libgcrypt package.
+
+
+%package lib
+Summary: lib components for the libgcrypt package.
+Group: Libraries
+Requires: libgcrypt-data = %{version}-%{release}
+
+%description lib
+lib components for the libgcrypt package.
+
+
+%package lib32
+Summary: lib32 components for the libgcrypt package.
+Group: Default
+Requires: libgcrypt-data = %{version}-%{release}
+
+%description lib32
+lib32 components for the libgcrypt package.
+
+
+%package staticdev
+Summary: staticdev components for the libgcrypt package.
+Group: Default
+Requires: libgcrypt-dev = %{version}-%{release}
+
+%description staticdev
+staticdev components for the libgcrypt package.
+
+
 %prep
 %setup -q -n libgcrypt
 cd %{_builddir}/libgcrypt
@@ -65,7 +137,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1638330359
+export SOURCE_DATE_EPOCH=1638330797
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -160,7 +232,6 @@ export LDFLAGS="${LDFLAGS_GENERATE}"
 export LIBS="${LIBS_GENERATE}"
 %autogen_simple  --enable-shared \
 --enable-static \
---enable-ciphers="dsa elgamal rsa ecc cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des" \
 --disable-large-data-tests \
 --disable-O-flag-munging \
 --disable-instrumentation-munging \
@@ -212,7 +283,6 @@ export LDFLAGS="${LDFLAGS_USE}"
 export LIBS="${LIBS_USE}"
 %autogen_simple --enable-shared \
 --enable-static \
---enable-ciphers="dsa elgamal rsa ecc cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des" \
 --disable-large-data-tests \
 --disable-O-flag-munging \
 --disable-instrumentation-munging \
@@ -257,7 +327,7 @@ make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1638330359
+export SOURCE_DATE_EPOCH=1638330797
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -282,3 +352,43 @@ cp --archive random.conf %{buildroot}/usr/share/gcrypt/
 
 %files
 %defattr(-,root,root,-)
+
+%files bin
+%defattr(-,root,root,-)
+/usr/bin/dumpsexp
+/usr/bin/hmac256
+/usr/bin/libgcrypt-config
+/usr/bin/mpicalc
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/gcrypt/random.conf
+
+%files dev
+%defattr(-,root,root,-)
+/usr/include/gcrypt.h
+/usr/lib64/libgcrypt.la
+/usr/lib64/libgcrypt.so
+/usr/lib64/pkgconfig/libgcrypt.pc
+/usr/share/aclocal/*.m4
+
+%files dev32
+%defattr(-,root,root,-)
+/usr/lib32/libgcrypt.la
+/usr/lib32/libgcrypt.so
+/usr/lib32/pkgconfig/32libgcrypt.pc
+/usr/lib32/pkgconfig/libgcrypt.pc
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libgcrypt.so.20
+/usr/lib64/libgcrypt.so.20.3.3
+
+%files lib32
+%defattr(-,root,root,-)
+/usr/lib32/libgcrypt.so.20
+/usr/lib32/libgcrypt.so.20.3.3
+
+%files staticdev
+%defattr(-,root,root,-)
+/usr/lib64/libgcrypt.a
