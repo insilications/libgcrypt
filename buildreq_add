@@ -2,15 +2,16 @@
 # This file contains extra pkgconfig build requirements that don't get picked up but are
 # desirable. One name per line, no whitespace.
 #
+ImageMagick
+ImageMagick-dev
 fig2dev
 ghostscript
 ghostscript-dev
-ImageMagick
-ImageMagick-dev
 libcap-dev
 libcap-ng-dev
 libcap-staticdev
 libgpg-error-dev
 libgpg-error-dev32
 libgpg-error-extras
+libgpg-error-staticdev
 texinfo
