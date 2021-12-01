@@ -1,2 +1,4 @@
-0001-Specify-O3-for-func-attribute-override.patch
 0001-disable-optimizations-jitter.patch
+0002-stateless-usr-share-gcrypt-random.conf.patch
+0003-Specify-O3-for-func-attribute-override.patch
+0004-Add-random.conf.patch

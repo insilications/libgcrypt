@@ -1,7 +1,7 @@
-From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From c1d33c0a4e84eb39a73ba9a1adf7733f90a242e9 Mon Sep 17 00:00:00 2001
 From: Patrick McCarty <patrick.mccarty@intel.com>
 Date: Fri, 12 Feb 2021 19:28:53 +0000
-Subject: [PATCH] Specify -O3 for func attribute override
+Subject: [PATCH 3/4] Specify -O3 for func attribute override
 
 Starting with libgcrypt 1.9.0, the src/hwf-x86.c source file defines a
 macro named FORCE_FUNC_FRAME_POINTER that (for gcc >= 4.7.0) expands to
@@ -32,11 +32,11 @@ Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/hwf-x86.c b/src/hwf-x86.c
-index 9a9ed6d3..ed5390ac 100644
+index a1aa02e7..04d895fe 100644
 --- a/src/hwf-x86.c
 +++ b/src/hwf-x86.c
 @@ -41,7 +41,7 @@
-
+ 
  #if _GCRY_GCC_VERSION >= 40700 /* 4.7 */
  # define FORCE_FUNC_FRAME_POINTER \
 -	__attribute__ ((optimize("no-omit-frame-pointer")))
@@ -44,3 +44,6 @@ index 9a9ed6d3..ed5390ac 100644
  #else
  # define FORCE_FUNC_FRAME_POINTER
  #endif
+-- 
+2.34.0
+

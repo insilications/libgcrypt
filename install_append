@@ -1,0 +1,2 @@
+install -dm 0755 %{buildroot}/usr/share/gcrypt/
+cp --archive random.conf %{buildroot}/usr/share/gcrypt/
