@@ -40,7 +40,6 @@ BuildRequires : texinfo
 %define debug_package %{nil}
 Patch1: 0001-Specify-O3-for-func-attribute-override.patch
 Patch2: 0001-disable-optimizations-jitter.patch
-Patch3: libgcrypt-1.8.5-getrandom.patch
 
 %description
 Libgcrypt - The GNU Crypto Library
@@ -52,7 +51,6 @@ Version 1.9
 cd %{_builddir}/libgcrypt
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 pushd %{_builddir}
 cp -a %{_builddir}/libgcrypt build32
 popd
@@ -63,7 +61,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1638328312
+export SOURCE_DATE_EPOCH=1638328495
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -255,7 +253,7 @@ make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1638328312
+export SOURCE_DATE_EPOCH=1638328495
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
