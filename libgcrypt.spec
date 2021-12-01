@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libgcrypt
 Version  : 1.9.4
-Release  : 408
+Release  : 409
 URL      : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Summary  : General purpose cryptographic library
@@ -38,8 +38,10 @@ BuildRequires : texinfo
 # Suppress stripping binaries
 %define __strip /bin/true
 %define debug_package %{nil}
-Patch1: 0001-Specify-O3-for-func-attribute-override.patch
-Patch2: 0001-disable-optimizations-jitter.patch
+Patch1: 0001-disable-optimizations-jitter.patch
+Patch2: 0002-stateless-usr-share-gcrypt-random.conf.patch
+Patch3: 0003-Specify-O3-for-func-attribute-override.patch
+Patch4: 0004-Add-random.conf.patch
 
 %description
 Libgcrypt - The GNU Crypto Library
@@ -51,6 +53,8 @@ Version 1.9
 cd %{_builddir}/libgcrypt
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 pushd %{_builddir}
 cp -a %{_builddir}/libgcrypt build32
 popd
@@ -61,7 +65,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1638328495
+export SOURCE_DATE_EPOCH=1638330359
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -156,7 +160,7 @@ export LDFLAGS="${LDFLAGS_GENERATE}"
 export LIBS="${LIBS_GENERATE}"
 %autogen_simple  --enable-shared \
 --enable-static \
---enable-ciphers="cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des" \
+--enable-ciphers="dsa elgamal rsa ecc cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des" \
 --disable-large-data-tests \
 --disable-O-flag-munging \
 --disable-instrumentation-munging \
@@ -208,7 +212,7 @@ export LDFLAGS="${LDFLAGS_USE}"
 export LIBS="${LIBS_USE}"
 %autogen_simple --enable-shared \
 --enable-static \
---enable-ciphers="cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des" \
+--enable-ciphers="dsa elgamal rsa ecc cast5 aes twofish serpent rfc2268 seed camellia idea salsa20 gost28147 chacha20 des" \
 --disable-large-data-tests \
 --disable-O-flag-munging \
 --disable-instrumentation-munging \
@@ -253,7 +257,7 @@ make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1638328495
+export SOURCE_DATE_EPOCH=1638330359
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
@@ -271,6 +275,10 @@ popd
 fi
 popd
 %make_install
+## install_append content
+install -dm 0755 %{buildroot}/usr/share/gcrypt/
+cp --archive random.conf %{buildroot}/usr/share/gcrypt/
+## install_append end
 
 %files
 %defattr(-,root,root,-)
