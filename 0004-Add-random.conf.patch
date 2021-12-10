@@ -1,4 +1,4 @@
-From 14e35d1d5bdcc4d6e50191b6ee245a468e62b9c5 Mon Sep 17 00:00:00 2001
+From 9ed7ee4c7ee332c4502874be2be7657c2377020a Mon Sep 17 00:00:00 2001
 From: Francisco Boni <boboniboni@gmail.com>
 Date: Wed, 1 Dec 2021 00:42:22 -0300
 Subject: [PATCH 4/4] Add random.conf
@@ -18,5 +18,5 @@ index 00000000..e671c4f7
 +# system call instead of the blocking /dev/random.
 +only-urandom
 -- 
-2.34.0
+2.34.1
 

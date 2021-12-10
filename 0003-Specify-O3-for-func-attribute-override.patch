@@ -1,4 +1,4 @@
-From c1d33c0a4e84eb39a73ba9a1adf7733f90a242e9 Mon Sep 17 00:00:00 2001
+From cbf8e3eeea9c833d8d6f9959ef18d7157ffb0212 Mon Sep 17 00:00:00 2001
 From: Patrick McCarty <patrick.mccarty@intel.com>
 Date: Fri, 12 Feb 2021 19:28:53 +0000
 Subject: [PATCH 3/4] Specify -O3 for func attribute override
@@ -45,5 +45,5 @@ index a1aa02e7..04d895fe 100644
  # define FORCE_FUNC_FRAME_POINTER
  #endif
 -- 
-2.34.0
+2.34.1
 

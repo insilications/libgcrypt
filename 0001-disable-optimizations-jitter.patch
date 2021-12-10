@@ -1,4 +1,4 @@
-From 8ffe01a521bdeb8db4e24555eb04b5174f699886 Mon Sep 17 00:00:00 2001
+From 77b1e59305851d390dfb3c5c830c2b90360f82f5 Mon Sep 17 00:00:00 2001
 From: Francisco Boni <boboniboni@gmail.com>
 Date: Wed, 1 Dec 2021 00:08:31 -0300
 Subject: [PATCH 1/4] disable-optimizations-jitter
@@ -26,5 +26,5 @@ index cf7630d9..efca1987 100644
 +
 +#pragma GCC reset_options
 -- 
-2.34.0
+2.34.1
 
