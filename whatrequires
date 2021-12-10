@@ -54,6 +54,7 @@ kwallet
 kwallet-pam
 libgcrypt-dev
 libgcrypt-dev32
+libgcrypt-staticdev
 libgnome-keyring
 libiscsi
 libmicrohttpd
