@@ -7,5 +7,4 @@
 --disable-doc
 --enable-asm
 --enable-noexecstack
---enable-random=linux
 --with-capabilities=no

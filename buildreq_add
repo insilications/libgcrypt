@@ -7,9 +7,6 @@ ImageMagick-dev
 fig2dev
 ghostscript
 ghostscript-dev
-libcap-dev
-libcap-ng-dev
-libcap-staticdev
 libgpg-error-dev
 libgpg-error-dev32
 libgpg-error-extras

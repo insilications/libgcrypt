@@ -5,7 +5,7 @@
 %define keepstatic 1
 Name     : libgcrypt
 Version  : 1.9.4
-Release  : 416
+Release  : 418
 URL      : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Source0  : file:///aot/build/clearlinux/packages/libgcrypt/libgcrypt-v1.9.4.tar.gz
 Summary  : General purpose cryptographic library
@@ -28,9 +28,6 @@ BuildRequires : gcc-libubsan
 BuildRequires : gcc-locale
 BuildRequires : ghostscript
 BuildRequires : ghostscript-dev
-BuildRequires : libcap-dev
-BuildRequires : libcap-ng-dev
-BuildRequires : libcap-staticdev
 BuildRequires : libgcc1
 BuildRequires : libgpg-error-dev
 BuildRequires : libgpg-error-dev32
@@ -137,7 +134,7 @@ unset https_proxy
 unset no_proxy
 export SSL_CERT_FILE=/var/cache/ca-certs/anchors/ca-certificates.crt
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1639125561
+export SOURCE_DATE_EPOCH=1639487447
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
@@ -243,7 +240,9 @@ export LIBS="${LIBS_GENERATE}"
 --disable-instrumentation-munging \
 --disable-m-guard \
 --disable-doc \
---enable-noexecstack
+--enable-asm \
+--enable-noexecstack \
+--with-capabilities=no
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 
 ## profile_payload start
@@ -295,7 +294,9 @@ export LIBS="${LIBS_USE}"
 --disable-instrumentation-munging \
 --disable-m-guard \
 --disable-doc \
---enable-noexecstack
+--enable-asm \
+--enable-noexecstack \
+--with-capabilities=no
 make  %{?_smp_mflags}    V=1 VERBOSE=1
 fi
 
@@ -335,7 +336,7 @@ make  %{?_smp_mflags}    V=1 VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1639125561
+export SOURCE_DATE_EPOCH=1639487447
 rm -rf %{buildroot}
 pushd ../build32/
 %make_install32
