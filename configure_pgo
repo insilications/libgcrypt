@@ -5,4 +5,7 @@
 --disable-instrumentation-munging
 --disable-m-guard
 --disable-doc
+--enable-asm
 --enable-noexecstack
+--enable-random=linux
+--with-capabilities=no
